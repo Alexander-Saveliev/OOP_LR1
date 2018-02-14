@@ -24,6 +24,7 @@ func runAppWithArgy(_ argy: [String]) {
     
     // Launch the task
     task.launch()
+    sleep(10)
 }
 
 func comparisonFiles(_ file1: String, _ file2: String) -> Bool {
@@ -37,7 +38,7 @@ func comparisonFiles(_ file1: String, _ file2: String) -> Bool {
         
         return text1 == text2
     } catch {
-        print("Failed reading. Error: " + error.localizedDescription)
+        print("Failed reading in comperison. Error: " + error.localizedDescription)
     }
     return false
 }
@@ -45,32 +46,32 @@ func comparisonFiles(_ file1: String, _ file2: String) -> Bool {
 class LR11_tests: XCTestCase {
     
     func test1() {
-        let argy = ["in1.txt", "out1.txt", "some", "trash"]
+        let argy = ["tests/in1.txt", "tests/out1.txt", "some", "trash"]
         runAppWithArgy(argy)
-        XCTAssertTrue(comparisonFiles("true_out1.txt", "out1.txt"))
+        XCTAssertTrue(comparisonFiles("tests/true_out1.txt", "tests/out1.txt"))
     }
     
     func test2() {
-        let argy = ["in2.txt", "out2.txt", "1231234", "trash"]
+        let argy = ["tests/in2.txt", "tests/out2.txt", "1231234", "trash"]
         runAppWithArgy(argy)
-        XCTAssertTrue(comparisonFiles("true_out2.txt", "out2.txt"))
+        XCTAssertTrue(comparisonFiles("tests/true_out2.txt", "tests/out2.txt"))
     }
     
     func test3() {
-        let argy = ["in3.txt", "out3.txt", "ма", "trash"]
+        let argy = ["tests/in3.txt", "tests/out3.txt", "ма", "trash"]
         runAppWithArgy(argy)
-        XCTAssertTrue(comparisonFiles("true_out3.txt", "out3.txt"))
+        XCTAssertTrue(comparisonFiles("tests/true_out3.txt", "tests/out3.txt"))
     }
     
     func test4() {
-        let argy = ["in4.txt", "out4.txt", "so", "#"]
+        let argy = ["tests/in4.txt", "tests/out4.txt", "so", "#"]
         runAppWithArgy(argy)
-        XCTAssertTrue(comparisonFiles("true_out4.txt", "out4.txt"))
+        XCTAssertTrue(comparisonFiles("tests/true_out4.txt", "tests/out4.txt"))
     }
     
     func test5() {
-        let argy = ["in5.txt", "out5.txt", "а", "#"]
+        let argy = ["tests/in5.txt", "tests/out5.txt", "а", "#"]
         runAppWithArgy(argy)
-        XCTAssertTrue(comparisonFiles("true_out5.txt", "out5.txt"))
+        XCTAssertTrue(comparisonFiles("tests/true_out5.txt", "tests/out5.txt"))
     }
 }

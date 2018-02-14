@@ -14,20 +14,19 @@ func replaceIn(_ str: String, find: String, replace: String) -> String {
         return str
     }
     
-    var outString = ""
-    var waiting = 0
+    var outString     = ""
+    var iterationSkip = 0
     
     var start = str.startIndex
     var end   = str.index(start, offsetBy: find.count - 1)
     
-    // waiting неудачное имя
     while end != str.endIndex {
-        if waiting != 0 {
-            waiting -= 1
+        if iterationSkip != 0 {
+            iterationSkip -= 1
         } else {
             if str[start...end] == find {
                 outString.append(replace)
-                waiting = find.count - 1
+                iterationSkip = find.count - 1
             } else {
                 outString.append(str[start])
             }
@@ -37,8 +36,8 @@ func replaceIn(_ str: String, find: String, replace: String) -> String {
         end   = str.index(after: end)
     }
     
-    if waiting != 0 {
-        start = str.index(start, offsetBy: waiting)
+    if iterationSkip != 0 {
+        start = str.index(start, offsetBy: iterationSkip)
     }
     
     outString+=str[start..<str.endIndex]
@@ -69,36 +68,43 @@ let replace    = argy[4]
 
 assert(find != "", "The search string must not be empty")
 
-// get files URL
-let dirURL        = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-let inputFileURL  = dirURL.appendingPathComponent(inputFile)
-let outputFileURL = dirURL.appendingPathComponent(outputFile)
+
+let pathURL       = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+let inputFileURL  = pathURL.appendingPathComponent(inputFile)
+let outputFileURL = pathURL.appendingPathComponent(outputFile)
 
 
-var outputText = [String]()
+let streamReading = StreamReader(url: inputFileURL)
+assert(streamReading != nil, "I can't find input file")
 
-// reading from file
+
+// creation out_.txt
 do {
-    let text = try String(contentsOf: inputFileURL).components(separatedBy: "\n") as [String]
-    
-    for str in text where str != "" {
-        outputText.append(replaceIn(str, find: find, replace: replace))
-    }
-} catch {
-    print("Failed reading from URL: \(inputFileURL), Error: " + error.localizedDescription)
+    try "".write(to: outputFileURL, atomically: false, encoding: String.Encoding.utf8)
 }
-
-// Write to the file named Test
-var out = ""
-
-for str in outputText {
-    out.append(str + "\n")
-}
-
-do {
-    try out.write(to: outputFileURL, atomically: true, encoding: .utf8)
-} catch {
+catch {
     print("Failed writing to URL: \(outputFileURL), Error: " + error.localizedDescription)
 }
+
+
+// Open for writing to end of file
+let outPath = FileManager.default.currentDirectoryPath + "/\(outputFile)"
+assert(FileHandle(forWritingAtPath: outPath) != nil, "Failed to write into file")
+let fh = FileHandle(forWritingAtPath: outPath)!
+
+fh.seekToEndOfFile()
+
+
+// Reading file line by line
+while let str = streamReading?.nextLine() {
+    let replacedString = replaceIn(str, find: find, replace: replace) + "\n"
+    let data = replacedString.data(using: .utf8, allowLossyConversion: false)
+    assert(data != nil, "Failed convert data for writing into file")
+    
+    fh.write(data!)
+}
+
+fh.closeFile()
+
 
 
