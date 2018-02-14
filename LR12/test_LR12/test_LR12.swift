@@ -154,7 +154,7 @@ class test_LR12: XCTestCase {
     }
     
     func testConvertion() {
-        XCTAssertEqual(convertValue("-A", fromNotation: 10, toNotation: 2), "-1010")
+        XCTAssertEqual(convertValue("-A", fromNotation: 11, toNotation: 2), "-1010")
         XCTAssertEqual(convertValue("AAA", fromNotation: 27, toNotation: 2), "1110110010010")
         XCTAssertEqual(convertValue("ZZZZ", fromNotation: 36, toNotation: 16), "19A0FF")
         XCTAssertEqual(convertValue("-AHYB", fromNotation: 35, toNotation: 13), "-12A241")

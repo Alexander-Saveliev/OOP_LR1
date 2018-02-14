@@ -8,14 +8,14 @@
 
 import Foundation
 
-func runAppWithArgy(_ argy: [String]) {
+func runAppWithargv(_ argv: [String]) {
     let programName = "LR12"
     // Create a Task instance
     let task = Process()
     
     // Set the task parameters
     task.launchPath = "/usr/bin/env"
-    task.arguments = ["./" + programName] + argy
+    task.arguments = ["./" + programName] + argv
     
     // Create a Pipe and make the task
     // put all the output there
@@ -28,12 +28,12 @@ func runAppWithArgy(_ argy: [String]) {
 }
 
 
-func getArgy() -> [String] {
+func getArgv() -> [String] {
     assert(CommandLine.arguments.count == 4, "Incorrect number of arguments. It must be 3")
     
-    let argy = CommandLine.arguments
+    let argv = CommandLine.arguments
     
-    return argy
+    return argv
 }
 
 

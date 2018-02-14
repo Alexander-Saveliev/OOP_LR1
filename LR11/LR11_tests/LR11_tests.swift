@@ -8,14 +8,14 @@
 
 import XCTest
 
-func runAppWithArgy(_ argy: [String]) {
+func runAppWithargv(_ argv: [String]) {
     let programName = "LR11"
     // Create a Task instance
     let task = Process()
     
     // Set the task parameters
     task.launchPath = "/usr/bin/env"
-    task.arguments = ["./" + programName] + argy
+    task.arguments = ["./" + programName] + argv
     
     // Create a Pipe and make the task
     // put all the output there
@@ -46,32 +46,32 @@ func comparisonFiles(_ file1: String, _ file2: String) -> Bool {
 class LR11_tests: XCTestCase {
     
     func test1() {
-        let argy = ["tests/in1.txt", "tests/out1.txt", "some", "trash"]
-        runAppWithArgy(argy)
+        let argv = ["tests/in1.txt", "tests/out1.txt", "some", "trash"]
+        runAppWithargv(argv)
         XCTAssertTrue(comparisonFiles("tests/true_out1.txt", "tests/out1.txt"))
     }
     
     func test2() {
-        let argy = ["tests/in2.txt", "tests/out2.txt", "1231234", "trash"]
-        runAppWithArgy(argy)
+        let argv = ["tests/in2.txt", "tests/out2.txt", "1231234", "trash"]
+        runAppWithargv(argv)
         XCTAssertTrue(comparisonFiles("tests/true_out2.txt", "tests/out2.txt"))
     }
     
     func test3() {
-        let argy = ["tests/in3.txt", "tests/out3.txt", "ма", "trash"]
-        runAppWithArgy(argy)
+        let argv = ["tests/in3.txt", "tests/out3.txt", "ма", "trash"]
+        runAppWithargv(argv)
         XCTAssertTrue(comparisonFiles("tests/true_out3.txt", "tests/out3.txt"))
     }
     
     func test4() {
-        let argy = ["tests/in4.txt", "tests/out4.txt", "so", "#"]
-        runAppWithArgy(argy)
+        let argv = ["tests/in4.txt", "tests/out4.txt", "so", "#"]
+        runAppWithargv(argv)
         XCTAssertTrue(comparisonFiles("tests/true_out4.txt", "tests/out4.txt"))
     }
     
     func test5() {
-        let argy = ["tests/in5.txt", "tests/out5.txt", "а", "#"]
-        runAppWithArgy(argy)
+        let argv = ["tests/in5.txt", "tests/out5.txt", "а", "#"]
+        runAppWithargv(argv)
         XCTAssertTrue(comparisonFiles("tests/true_out5.txt", "tests/out5.txt"))
     }
 }

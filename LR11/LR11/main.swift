@@ -46,12 +46,12 @@ func replaceIn(_ str: String, find: String, replace: String) -> String {
 }
 
 
-func getArgy() -> [String] {
+func getArgv() -> [String] {
     assert(CommandLine.arguments.count == 5, "Incorrect number of arguments. It must be 4")
     
-    let argy = CommandLine.arguments
+    let argv = CommandLine.arguments
     
-    return argy
+    return argv
 }
 
 
@@ -59,12 +59,12 @@ func getArgy() -> [String] {
 
 
 // <file name> <input file> <output file> <search string> <replace string>
-let argy = getArgy()
+let argv = getArgv()
 
-let inputFile  = argy[1]
-let outputFile = argy[2]
-let find       = argy[3]
-let replace    = argy[4]
+let inputFile  = argv[1]
+let outputFile = argv[2]
+let find       = argv[3]
+let replace    = argv[4]
 
 assert(find != "", "The search string must not be empty")
 
