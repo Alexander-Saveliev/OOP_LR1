@@ -42,4 +42,8 @@ class LR13_tests: XCTestCase {
         XCTAssertEqual(runAppWithargv(["tests/matrix1.txt"]), "0.462 -0.367 0.207 -0.291 0.964 -0.564 -0.047 0.069 -0.029 \n")
     }
     
+    func test2() {
+        XCTAssertEqual(runAppWithargv(["tests/matrix2.txt"]), "0.048 -0.317 0.079 0.143 0.381 -0.095 -0.286 0.238 0.190 \n")
+    }
+    
 }

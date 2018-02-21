@@ -22,7 +22,6 @@ func getMatrixFromString(_ str: String) -> [[Double]] {
     
     for (y, row) in str.components(separatedBy: "\n").enumerated() where row != "" {
         for (x, element) in row.components(separatedBy: "\t").enumerated() {
-            //print("->\(element)")
             assert(x < matrixSize && y < matrixSize, "Incorrect number of element in matrix")
             if let toDouble = Double(element) {
                 matrix[y][x] = toDouble
