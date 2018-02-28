@@ -40,6 +40,7 @@ func printElementsOfMatrix(_ matrix: [[Double]]) {
         for element in row {
             print(String(format: "%.03f", element), terminator: " ")
         }
+        print()
     }
     print()
 }

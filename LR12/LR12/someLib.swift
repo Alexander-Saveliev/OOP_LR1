@@ -81,8 +81,6 @@ func getNumberOfChar(_ value: Character) -> Int? {
 
 
 func convertValue(_ str: String, fromNotation from: Int, toNotation to: Int) -> String {
-    
-    
     let minusSign: Character = "-"
     var value = str
     
@@ -96,11 +94,9 @@ func convertValue(_ str: String, fromNotation from: Int, toNotation to: Int) -> 
     // Calculating into decimal
     var decimalResult = 0
     
-    for (i, digit) in value.reversed().enumerated() {
-        let newDigitValue = getNumberOfChar(digit)! * Int(pow(Double(from), Double(i)))
-        
-        assert(Int.max - decimalResult - newDigitValue >= 0, "Overflow")
-        decimalResult += newDigitValue
+    for digit in value.reversed() {
+        assert(Int.max - (decimalResult * 10 + getNumberOfChar(digit)!) > 0, "Overflow")
+        decimalResult = decimalResult * 10 + getNumberOfChar(digit)!
     }
     
     // From decimal
