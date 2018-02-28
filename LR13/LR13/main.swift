@@ -18,9 +18,15 @@ let fileURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/
 do {
     let input = try String(contentsOf: fileURL, encoding: .utf8)
     
-    var matrix = getMatrixFromString(input)
+    var matrix: [[Double]]! = getMatrixFromString(input)
     invertMatrix(&matrix)
-    printElementsOfMatrix(matrix)
+    
+    if (matrix == nil) {
+        print("Reversed matrix doesn't exist")
+    } else {
+        printElementsOfMatrix(matrix)
+    }
+    
     
 }
 catch {/* error handling here */}

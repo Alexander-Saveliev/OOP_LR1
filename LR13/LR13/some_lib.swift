@@ -122,8 +122,10 @@ func transposeMatrix(_ matrix: inout [[Double]]) {
 
 
 func divideMatrix(_ matrix: inout [[Double]], by divider: Double) {
+    let accuracy = 0.0005
+    
     checkMatrixDimention(matrix)
-    assert(divider != 0, "Division by 0")
+    assert(abs(divider) > accuracy, "Division by 0")
     
     for y in 0..<matrix.count {
         for x in 0..<matrix.count {
@@ -133,14 +135,16 @@ func divideMatrix(_ matrix: inout [[Double]], by divider: Double) {
 }
 
 
-func invertMatrix(_ matrix: inout [[Double]]){
+func invertMatrix(_ matrix: inout [[Double]]!){
     let accuracy = 0.0005
     checkMatrixDimention(matrix)
     
     let determinant = findDeterminant(matrix)
     
-    
-    assert(determinant > accuracy, "Determinant = 0!")
+    if (abs(determinant) < accuracy) {
+        matrix = nil
+        return
+    }
 
     
     var algebraicComplements = getAlgebraicComplementsForMatrix(matrix)
