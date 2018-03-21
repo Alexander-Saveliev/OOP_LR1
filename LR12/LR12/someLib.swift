@@ -96,7 +96,8 @@ func convertValue(_ str: String, fromNotation from: Int, toNotation to: Int) -> 
     
     for digit in value.reversed() {
         assert(Int.max - (decimalResult * 10 + getNumberOfChar(digit)!) > 0, "Overflow")
-        decimalResult = decimalResult * 10 + getNumberOfChar(digit)!
+        
+        decimalResult = decimalResult * 10 + getNumberOfChar(digit)! 
     }
     
     // From decimal

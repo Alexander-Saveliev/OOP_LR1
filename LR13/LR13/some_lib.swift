@@ -135,22 +135,21 @@ func divideMatrix(_ matrix: inout [[Double]], by divider: Double) {
 }
 
 
-func invertMatrix(_ matrix: inout [[Double]]!){
+func invertMatrix(_ matrix: matrix) -> matrix {
     let accuracy = 0.0005
     checkMatrixDimention(matrix)
     
     let determinant = findDeterminant(matrix)
     
     if (abs(determinant) < accuracy) {
-        matrix = nil
-        return
+        return nil
     }
-
     
     var algebraicComplements = getAlgebraicComplementsForMatrix(matrix)
+    
     transposeMatrix(&algebraicComplements)
     
     divideMatrix(&algebraicComplements, by: determinant)
-    
-    matrix = algebraicComplements
+
+    return algebraicComplements
 }

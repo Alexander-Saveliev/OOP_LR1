@@ -13,18 +13,21 @@ let argv = getArgv()
 
 let fileURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/\(argv[1])")
 
+typealias matrix = [[Double]]!
     
 //reading
 do {
     let input = try String(contentsOf: fileURL, encoding: .utf8)
     
-    var matrix: [[Double]]! = getMatrixFromString(input)
-    invertMatrix(&matrix)
+    let matrix: matrix = getMatrixFromString(input)
     
-    if (matrix == nil) {
+    
+    let reversedMatrix = invertMatrix(matrix)
+    
+    if (reversedMatrix == nil) {
         print("Reversed matrix doesn't exist")
     } else {
-        printElementsOfMatrix(matrix)
+        printElementsOfMatrix(reversedMatrix!)
     }
     
     
