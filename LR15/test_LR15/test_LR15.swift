@@ -9,7 +9,7 @@
 import XCTest
 import Foundation
 
-func runAppWithargv(_ argv: [String]) {
+func runApp(with argv: [String]) {
     let programName = "LR15"
     // Create a Task instance
     let task = Process()
@@ -31,7 +31,7 @@ func runAppWithargv(_ argv: [String]) {
 class test_LR15: XCTestCase {
     func testFile1() {
         let argv = ["tests/test1.txt", "tests/testout1.txt"]
-        runAppWithargv(argv)
+        runApp(with: argv)
         
         var outFile = ""
         let outURL  = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/\(argv[1])")
@@ -54,7 +54,7 @@ class test_LR15: XCTestCase {
 
     func testFile2() {
         let argv = ["tests/test2.txt", "tests/testout2.txt"]
-        runAppWithargv(argv)
+        runApp(with: argv)
         
         var outFile = ""
         let outURL  = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/\(argv[1])")
@@ -77,7 +77,7 @@ class test_LR15: XCTestCase {
     
     func testFile3() {
         let argv = ["tests/test3.txt", "tests/testout3.txt"]
-        runAppWithargv(argv)
+        runApp(with: argv)
         
         var outFile = ""
         let outURL  = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/\(argv[1])")
@@ -100,7 +100,7 @@ class test_LR15: XCTestCase {
 
     func testFile4() {
         let argv = ["tests/test4.txt", "tests/testout4.txt"]
-        runAppWithargv(argv)
+        runApp(with: argv)
         
         var outFile = ""
         let outURL  = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/\(argv[1])")
@@ -120,6 +120,4 @@ class test_LR15: XCTestCase {
         
         XCTAssertEqual(outFile, answer)
     }
-
-    
 }

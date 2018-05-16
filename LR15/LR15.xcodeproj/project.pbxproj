@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		403D0E6420A718AC003A97CA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D0E6320A718AC003A97CA /* main.swift */; };
 		403D0E6B20A71A72003A97CA /* fill_tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D0E6A20A71A72003A97CA /* fill_tools.swift */; };
-		403D0E6D20A71FB2003A97CA /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D0E6C20A71FB2003A97CA /* Cell.swift */; };
+		403D0E6D20A71FB2003A97CA /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D0E6C20A71FB2003A97CA /* CellType.swift */; };
 		403D0E6F20A722F3003A97CA /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D0E6E20A722F3003A97CA /* Point.swift */; };
 		403D0E7720A72B82003A97CA /* test_LR15.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403D0E7620A72B82003A97CA /* test_LR15.swift */; };
 /* End PBXBuildFile section */
@@ -30,7 +30,7 @@
 		403D0E6020A718AC003A97CA /* LR15 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LR15; sourceTree = BUILT_PRODUCTS_DIR; };
 		403D0E6320A718AC003A97CA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		403D0E6A20A71A72003A97CA /* fill_tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fill_tools.swift; sourceTree = "<group>"; };
-		403D0E6C20A71FB2003A97CA /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		403D0E6C20A71FB2003A97CA /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		403D0E6E20A722F3003A97CA /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		403D0E7420A72B82003A97CA /* test_LR15.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = test_LR15.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		403D0E7620A72B82003A97CA /* test_LR15.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test_LR15.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 				403D0E6320A718AC003A97CA /* main.swift */,
 				403D0E6A20A71A72003A97CA /* fill_tools.swift */,
 				403D0E6E20A722F3003A97CA /* Point.swift */,
-				403D0E6C20A71FB2003A97CA /* Cell.swift */,
+				403D0E6C20A71FB2003A97CA /* CellType.swift */,
 			);
 			path = LR15;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 				403D0E6F20A722F3003A97CA /* Point.swift in Sources */,
 				403D0E6B20A71A72003A97CA /* fill_tools.swift in Sources */,
 				403D0E6420A718AC003A97CA /* main.swift in Sources */,
-				403D0E6D20A71FB2003A97CA /* Cell.swift in Sources */,
+				403D0E6D20A71FB2003A97CA /* CellType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

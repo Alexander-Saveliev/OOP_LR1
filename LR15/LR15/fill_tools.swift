@@ -8,8 +8,12 @@
 
 import Foundation
 
-func readLinesFromFile(_ fileNane: String) -> [String]? {
-    let fileURL  = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/\(fileNane)")
+func constructPath(to fileName: String) -> URL {
+    return URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/\(fileName)")
+}
+
+func readLinesFromFile(_ fileName: String) -> [String]? {
+    let fileURL  = constructPath(to: fileName)
     var lines: [String]
     let bound = 100
     
@@ -28,7 +32,8 @@ func readLinesFromFile(_ fileNane: String) -> [String]? {
     
     for (i, line) in lines.enumerated() {
         if line.count > bound {
-            lines[i] = String(lines[i].prefix(upTo: line.index(line.startIndex, offsetBy: bound)))
+            let upBound = line.index(line.startIndex, offsetBy: bound)
+            lines[i] = String(lines[i].prefix(upTo: upBound))
         }
         
         if line.count != lineLength {
@@ -39,8 +44,11 @@ func readLinesFromFile(_ fileNane: String) -> [String]? {
     return lines
 }
 
+
+
 func writeIntoFile(_ fileName: String, value: String) {
-    let fileURL  = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/\(fileName)")
+    
+    let fileURL  = constructPath(to: fileName)
     
     do {
         try value.write(to: fileURL, atomically: false, encoding: .utf8)
@@ -50,14 +58,14 @@ func writeIntoFile(_ fileName: String, value: String) {
     }
 }
 
-func transformLinesIntoArray(_ lines: [String]) -> (array: [[Cell]], startPoints: [Point]) {
-    let borderLine = Array(repeating: Cell.border, count: lines[0].count + 2)
+func transformLinesIntoArray(_ lines: [String]) -> (array: [[CelType]], startPoints: [Point]) {
+    let borderLine = Array(repeating: CelType.border, count: lines[0].count + 2)
     
     var array = [borderLine]
     var startPoints = [Point]()
     
     for (y, line) in lines.enumerated() {
-        var arrLine = [Cell.border]
+        var arrLine = [CelType.border]
         
         for (x, char) in line.enumerated() {
             switch char {
@@ -79,7 +87,7 @@ func transformLinesIntoArray(_ lines: [String]) -> (array: [[Cell]], startPoints
     return (array, startPoints)
 }
 
-func fillField(_ field: inout [[Cell]], fromPoint point: Point) {
+func fillField(_ field: inout [[CelType]], fromPoint point: Point) {
     var someKindOfQueue = [point]
     
     while !someKindOfQueue.isEmpty {
@@ -98,26 +106,15 @@ func fillField(_ field: inout [[Cell]], fromPoint point: Point) {
     }
 }
 
-func transformArrayIntoLine(_ field: [[Cell]]) -> String {
+func transformArrayIntoLine(_ field: [[CelType]]) -> String {
     var output = ""
     
     for (i, arrLine) in field.enumerated() where i != 0 && i != field.count - 1 {
-        var line = ""
         
         for (i, cell) in arrLine.enumerated() where i != 0 && i != arrLine.count - 1 {
-            switch cell {
-            case .border:
-                line.append("#")
-            case .empty:
-                line.append(" ")
-            case .filled:
-                line.append(".")
-            case .start:
-                line.append("O")
-            }
+            output.append(cell.rawValue)
         }
-        line.append("\n")
-        output.append(line)
+        output.append("\n")
     }
     
     return output
